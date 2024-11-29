@@ -1,0 +1,39 @@
+yolo mark github
+https://github.com/AlexeyAB/Yolo_mark
+
+darknet c++ yolo cnn
+https://pjreddie.com/darknet/yolo/
+https://github.com/AlexeyAB/darknet
+
+training darknet
+https://www.kaggle.com/code/aminjarraya/train-yolov4-darknet-on-custom-dataset/notebook
+https://forum.khadas.com/t/beginners-guide-darknet-yolov3-or-yolov3-tiny-model-training/12932
+
+
+
+Blurring Image Regions with Real Noise and YOLO
+https://medium.com/@Mert.A/blurring-image-regions-with-real-noise-and-yolo-2458478ee7d8
+
+
+bananaPi M7
+https://docs.banana-pi.org/en/BPI-M7/BananaPi_BPI-M7
+https://docs.banana-pi.org/en/BPI-M7/GettingStarted_BPI-M7
+
+
+dataset: Aerial View Car Detection for Yolov5
+https://www.kaggle.com/datasets/braunge/aerial-view-car-detection-for-yolov5
+
+Car detection from a drone: a new angle
+https://medium.com/accelr-blog/car-detection-from-a-drone-a-new-angle-821cc6fff422
+
+ultralytics VisDrone dataset & howto
+https://docs.ultralytics.com/datasets/detect/visdrone/#usage
+
+OpenCV Principal Component Analysis (PCA)
+https://docs.opencv.org/4.x/d1/dee/tutorial_introduction_to_pca.html
+
+Open source log handling and visualization for spatial and embodied AI.
+rerun.io
+
+3D line mapping
+https://rerun.io/examples/spatial-computing/limap
