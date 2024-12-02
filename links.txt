@@ -37,3 +37,11 @@ rerun.io
 
 3D line mapping
 https://rerun.io/examples/spatial-computing/limap
+
+
+Hough-Rectangle-and-Circle-Detection
+https://github.com/AlaaAnani/Hough-Rectangle-and-Circle-Detection
+
+
+Fully autonomous AI powered drone
+https://github.com/MarioFPVdev/Autonomous-Ai-drone-scripts
