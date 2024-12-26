@@ -45,3 +45,17 @@ https://github.com/AlaaAnani/Hough-Rectangle-and-Circle-Detection
 
 Fully autonomous AI powered drone
 https://github.com/MarioFPVdev/Autonomous-Ai-drone-scripts
+
+
+Official repository of "SAMURAI: Adapting Segment Anything Model for Zero-Shot Visual Tracking with Motion-Aware Memory"
+https://yangchris11.github.io/samurai/
+https://github.com/yangchris11/samurai
+
+
+Model trained on this dataset https://universe.roboflow.com/scepter-innovations/technika-orkiv
+Model from this project is not good, so I decided to train it with YOLO and save it to file orcCar.pt
+Articles, used in the current work are following:
+1. https://docs.ultralytics.com/guides/security-alarm-system/
+2. https://docs.ultralytics.com/guides/yolo-performance-metrics/
+3. https://docs.ultralytics.com/guides/speed-estimation/#arguments-modeltrack
+4. https://github.com/roboflow/notebooks/blob/main/notebooks/train-yolov8-object-detection-on-custom-dataset.ipynb
