@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
 
   
 	def testYoloClicked(self):
-		model = YOLO('visdrone.pt')
+		model = YOLO('settings\\visdrone.pt')
 		self.label.setText("You clicked the button!")
 		results = model("img\\cars-002.jpg")
 		for r in results:
