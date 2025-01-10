@@ -1,7 +1,7 @@
 from PIL import Image
 from ultralytics import YOLO
 
-model = YOLO('visdrone.pt')
+model = YOLO('settings\\visdrone.pt')
 #model = YOLO('dota8-obb.pt')
 #model = YOLO('yolov8n.pt')
 #model = YOLO('yolov8s.pt')
@@ -17,7 +17,7 @@ for r in results:
     im_array = r.plot()  # plot a BGR numpy array of predictions
     im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
     im.show()  # show image
-    im.save('results.jpg')  # save image
+    #im.save('results.jpg')  # save image
 #    print(im_array[0])
 #    print(r.boxes)
 #    print(r.masks)

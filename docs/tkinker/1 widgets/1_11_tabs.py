@@ -24,7 +24,7 @@ entry2.pack()
 
 notebook.add(tab1, text = 'Tab 1')
 notebook.add(tab2, text = 'Tab 2')
-notebook.pack()
+notebook.pack(fill=tk.BOTH, expand=True)
 
 # exercise
 # add another tab with 2 buttons and one label inside 

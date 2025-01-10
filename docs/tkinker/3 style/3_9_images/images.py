@@ -76,17 +76,17 @@ window.columnconfigure((0,1,2,3), weight = 1, uniform = 'a')
 window.rowconfigure(0, weight = 1)
 
 # import an image 
-image_original = Image.open('raccoon.jpg')
+image_original = Image.open('docs/tkinker/3 style/3_9_images/raccoon.jpg')
 image_ratio = image_original.size[0] / image_original.size[1]
 print(image_ratio)
 image_tk = ImageTk.PhotoImage(image_original)
 
-python_dark = Image.open('python_dark.png').resize((30,30))
+python_dark = Image.open('docs/tkinker/3 style/3_9_images/python_dark.png').resize((30,30))
 python_dark_tk = ImageTk.PhotoImage(python_dark)
 
 img_ctk = ctk.CTkImage(
-	light_image = Image.open('python_dark.png'),
-	dark_image = Image.open('python_light.png'))
+	light_image = Image.open('docs/tkinker/3 style/3_9_images/python_dark.png'),
+	dark_image = Image.open('docs/tkinker/3 style/3_9_images/python_light.png'))
 
 # widget
 # label = ttk.Label(window, text = 'raccoon', image = image_tk)
