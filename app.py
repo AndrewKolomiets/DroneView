@@ -59,9 +59,15 @@ class DroneViewApp:
 		self.control_panel = tk.Frame(self.extractFrame, background='gray', width="40px")
 		self.control_panel.pack(side=tk.BOTTOM, fill=tk.Y, expand=True)
 
-		extractButton = tk.Button(self.extractFrame, text="extractButton", command=self.extract_features, width=10)
+		extractButton = tk.Button(self.extractFrame, text="extract", command=self.extract_features, width=10)
 		extractButton.pack(pady=3, padx=3)
 
+		segmentationButton = tk.Button(self.extractFrame, text="segmantation", command=self.perform_segmentation, width=10)
+		segmentationButton.pack(pady=3, padx=3)
+
+		cannyButton = tk.Button(self.extractFrame, text="canny", command=self.perform_canny, width=10)
+		cannyButton.pack(pady=3, padx=3)
+		
 	def load_source_file(self):
 		self.sourceFilePath = filedialog.askopenfilename()
 
@@ -126,7 +132,31 @@ class DroneViewApp:
 				if (point[0] > bbox[0] and point[0] < bbox[2]) and (point[1] > bbox[1] and point[1] < bbox[3]):
 					return idx
 		return -1
-		
+
+	def perform_segmentation(self):
+		mask = np.zeros(self.currentSelectedFrame.shape[:2], np.uint8)
+		rect = (0, 0, self.currentSelectedFrame.shape[0], self.currentSelectedFrame.shape[1])
+			
+		# Initialize the GrabCut algorithm state
+		self.bgd_model = np.zeros((1,65), np.float64)
+		self.fgd_model = np.zeros((1,65), np.float64)
+		# Perform GrabCut segmentation
+		cv2.grabCut(self.currentSelectedFrame, mask, rect, 
+					self.bgd_model, self.fgd_model, 
+					5, cv2.GC_INIT_WITH_RECT)
+			
+		# Create mask for display
+		mask2 = np.where( (mask==2) | (mask==0), 0, 1 ).astype('uint8')
+			
+		# Apply mask to image
+		masked = self.currentSelectedFrame * mask2[:,:,np.newaxis]
+		self.display_image(masked, self.extractCanvas2, 0)
+
+	def perform_canny(self):
+		gray = cv2.cvtColor(self.currentSelectedFrame, cv2.COLOR_RGB2GRAY)
+		edges = cv2.Canny(gray, threshold1=100, threshold2=550)
+		self.display_image(edges, self.extractCanvas2, 0)
+
 def main():
 	root = tk.Tk()
 	app = DroneViewApp(root)
