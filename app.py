@@ -46,8 +46,14 @@ class DroneViewApp:
 		self.notebook.add(self.extractFrame, text = 'Extract')
 		
         # Canvas for image display
-		self.extractCanvas = tk.Canvas(self.extractFrame, cursor="cross")
-		self.extractCanvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+		holder = tk.Frame(self.extractFrame)
+		holder.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+		
+		self.extractCanvas = tk.Canvas(holder, cursor="cross")
+		self.extractCanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+		self.extractCanvas2 = tk.Canvas(holder, cursor="cross")
+		self.extractCanvas2.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 		
         # Control panel
 		self.control_panel = tk.Frame(self.extractFrame, background='gray', width="40px")
@@ -74,7 +80,7 @@ class DroneViewApp:
 		scale = 1.0
 		if inImage is not None:
 			# Resize if image is too large
-			if max(self.sourceImageShape) > max_size:
+			if max_size!=0 and max(self.sourceImageShape) > max_size:
 				scale = max_size / max(self.sourceImageShape)
 				new_width = int(self.sourceImageShape[1] * scale)
 				new_height = int(self.sourceImageShape[0] * scale)
@@ -95,9 +101,9 @@ class DroneViewApp:
 			
 			for idx, box in enumerate(self.yoloResults[0].boxes):
 				if self.yoloResults[0].names[box.cls.numpy()[0]] == 'car':
-					bbox = box.xyxy[0].numpy(force=True)
-					pt1 = (int(bbox[0]),int(bbox[1]))
-					pt2 = (int(bbox[2]),int(bbox[3]))
+					bbox = box.xyxy[0].numpy(force=True).astype(int)
+					pt1 = (bbox[0], bbox[1])
+					pt2 = (bbox[2], bbox[3])
 					cv2.rectangle(img, pt1, pt2, (255,0,0), 2)
 
 			self.display_image(img, self.extractCanvas, 800)
@@ -105,8 +111,21 @@ class DroneViewApp:
 
 	def feature_selected(self, event):
 		scale = self.extractCanvas.imageScale
-		point = (event.x, event.y)
-		point = point / scale
+		point = (event.x/scale, event.y/scale)
+		self.currentSelectedIndex = self.pick_point(point)
+		if self.currentSelectedIndex != -1:
+			bbox = self.yoloResults[0].boxes[self.currentSelectedIndex].xyxy[0].numpy(force=True).astype(int)
+			self.currentSelectedFrame = self.sourceImage[bbox[1]:bbox[3], bbox[0]:bbox[2]]
+			self.display_image(self.currentSelectedFrame, self.extractCanvas2, 0)
+			
+
+	def pick_point(self,point):
+		for idx, box in enumerate(self.yoloResults[0].boxes):
+			if self.yoloResults[0].names[box.cls.numpy()[0]] == 'car':
+				bbox = box.xyxy[0].numpy(force=True)
+				if (point[0] > bbox[0] and point[0] < bbox[2]) and (point[1] > bbox[1] and point[1] < bbox[3]):
+					return idx
+		return -1
 		
 def main():
 	root = tk.Tk()
