@@ -1,2 +1,3 @@
 dji/out*
 /.ipynb_checkpoints
+*.pyc
